@@ -1,18 +1,11 @@
-import React from 'react';
-import CartWidget from './CartWidget';
+import { Link } from 'react-router-dom';
 
-const NavBar = () => {
+export default function NavBar() {
   return (
-    <nav style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem', background: '#eee' }}>
-      <h1>MiTienda</h1>
-      <ul style={{ listStyle: 'none', display: 'flex', gap: '1rem' }}>
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Productos</a></li>
-        <li><a href="#">Contacto</a></li>
-      </ul>
-      <CartWidget />
+    <nav style={{ padding: '1rem', borderBottom: '1px solid #ccc' }}>
+      <Link to="/" style={{ marginRight: '1rem' }}>Todos</Link>
+      <Link to="/category/terror" style={{ marginRight: '1rem' }}>Terror</Link>
+      <Link to="/category/sobrenatural">Sobrenatural</Link>
     </nav>
   );
-};
-
-export default NavBar;
+}

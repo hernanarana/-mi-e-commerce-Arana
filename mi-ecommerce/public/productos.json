@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "nombre": "Muñeca Annabelle",
+    "descripcion": "Figura espeluznante de la muñeca Annabelle, perfecta para fans del terror.",
+    "precio": 2000,
+    "imagen": "/img/muneca-annabelle.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Muñeco Freddy Krueger",
+    "descripcion": "Figura coleccionable de Freddy Krueger con detalles realistas.",
+    "precio": 3000,
+    "imagen": "/img/muneco-de-fredi.jpg"
+  }
+]
