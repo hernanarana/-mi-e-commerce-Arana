@@ -1,0 +1,29 @@
+.item-detail {
+  display: grid;
+  grid-template-columns: minmax(280px, 420px) 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.item-detail img {
+  width: 100%;
+  border: 2px solid #660000;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.item-detail h2 {
+  margin: 0 0 .5rem;
+  color: #e60000;
+}
+
+.item-detail p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+@media (max-width: 720px) {
+  .item-detail {
+    grid-template-columns: 1fr;
+  }
+}

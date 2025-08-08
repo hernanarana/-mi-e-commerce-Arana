@@ -1,0 +1,23 @@
+.item-count {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.item-count button {
+  background: #660000;
+  color: #fff;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+.item-count button:disabled {
+  background: #444;
+  cursor: not-allowed;
+}
+.item-count span {
+  min-width: 2rem;
+  text-align: center;
+}

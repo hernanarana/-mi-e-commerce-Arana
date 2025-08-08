@@ -1,0 +1,26 @@
+
+.cart-widget {
+  position: relative;
+  color: #fff;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+.cart-icon {
+  display: inline-block;
+  transform: rotate(0deg);
+  transition: transform 0.2s;
+}
+.cart-widget:hover .cart-icon {
+  transform: rotate(-10deg) scale(1.2);
+}
+.cart-count {
+  position: absolute;
+  top: -0.4rem;
+  right: -0.4rem;
+  background: #e60000;
+  color: #fff;
+  border-radius: 50%;
+  padding: 0.2rem 0.4rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+}

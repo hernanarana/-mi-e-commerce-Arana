@@ -1,0 +1,40 @@
+
+.item-list {
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.25rem 1rem;
+}
+
+
+.item-list-title {
+  margin: 0 0 1rem 0;
+  text-align: left;
+  font-size: clamp(1.25rem, 2.2vw + 0.6rem, 2rem);
+  font-weight: 900;
+  color: #ff2e2e;
+  text-shadow: 0 0 6px rgba(255,46,46,.25), 0 0 18px rgba(255,0,0,.15);
+  letter-spacing: .5px;
+}
+
+
+.item-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+
+.item-list-grid > * {
+  height: 100%;
+}
+
+
+@media (max-width: 420px) {
+  .item-list {
+    padding: 1rem .75rem;
+  }
+  .item-list-grid {
+    gap: 12px;
+  }
+}

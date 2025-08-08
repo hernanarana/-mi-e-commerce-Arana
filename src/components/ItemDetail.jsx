@@ -1,11 +1,16 @@
-export default function ItemDetail({ item }) {
+import React from 'react';
+import './ItemDetail.css';
+
+const ItemDetail = ({ item }) => {
   return (
-    <div style={{ padding: '1rem' }}>
-      <h2>{item.nombre}</h2>
-      <img src={item.imagen} alt={item.nombre} width="300" />
-      <p>{item.descripcion}</p>
-      <p><strong>Precio:</strong> ${item.precio}</p>
-      <p><strong>Categoría:</strong> {item.category}</p>
-    </div>
+    <article className="item-detail">
+      <img src={item.imageUrl || '/img/placeholder.jpg'} alt={item.name} />
+      <div>
+        <h2>{item.name}</h2>
+        <p>{item.description}</p>
+      </div>
+    </article>
   );
-}
+};
+
+export default ItemDetail;

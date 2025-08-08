@@ -1,0 +1,23 @@
+
+.item-list-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.item-list {
+  margin-top: 0.5rem;
+}
+
+.item-list-title {
+  margin: 0 0 1rem 0;
+}
+
+.item-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+

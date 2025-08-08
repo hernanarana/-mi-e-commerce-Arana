@@ -1,29 +1,38 @@
-
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { getProductos, getProductosPorCategoria } from '../services/api';
+import React, { useEffect, useState } from 'react';
+import { getProducts } from '../services/api';      
 import ItemList from './ItemList';
+import './ItemListContainer.css';
 
 export default function ItemListContainer() {
-  const { id: categoriaId } = useParams();       
-  const [items, setItems] = useState([]);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
-    const promesa = categoriaId
-      ? getProductosPorCategoria(categoriaId)
-      : getProductos();
+    let alive = true;
 
-    promesa
-      .then(prod => setItems(prod))
-      .finally(() => setLoading(false));
-  }, [categoriaId]);
+    (async () => {
+      try {
+        setLoading(true);
+        const fetched = await getProducts();
+        console.log('[ItemListContainer] products:', fetched); 
+        if (!alive) return;
+        setProducts(Array.isArray(fetched) ? fetched : []);    
+      } catch (err) {
+        console.error('[ItemListContainer] ERROR:', err);
+      } finally {
+        if (alive) setLoading(false);
+      }
+    })();
+
+    return () => { alive = false; };
+  }, []);
 
   if (loading) return <p>Cargando productos…</p>;
-  if (items.length === 0) return <p>No hay productos en esta categoría.</p>;
+  if (!products.length) return <p>No hay productos para mostrar.</p>;
 
-  return <ItemList items={items} />;
+  return (
+    <section className="item-list-container">
+      <ItemList products={products} />
+    </section>
+  );
 }
-
-

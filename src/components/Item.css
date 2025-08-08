@@ -1,0 +1,105 @@
+/* --- Card base --- */
+.item-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #0e0e0e;
+  border: 1px solid #2a0000;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.6);
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.item-card:hover {
+  transform: translateY(-2px);
+  border-color: #7a0000;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+}
+
+/* --- Imagen: mostrar el producto completo dentro del marco --- */
+.card-image-wrapper {
+  width: 100%;
+  height: clamp(180px, 28vw, 260px); /* alto responsivo, tope 260px */
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid #2a0000;
+}
+.card-image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;   /* evita cortes, se ve la pieza completa */
+  object-position: center;
+}
+
+/* --- Contenido --- */
+.card-content {
+  padding: 14px 16px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+.card-title {
+  margin: 0;
+  font-size: 1.1rem;
+  letter-spacing: .3px;
+  color: #fff;
+}
+.card-description {
+  margin: 0;
+  font-size: .95rem;
+  line-height: 1.35;
+  color: #cfcfcf;
+}
+
+/* --- Pie con precio + acciones --- */
+.card-bottom {
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.card-price {
+  margin: 0;
+  font-weight: 800;
+  color: #ff2e2e;
+  text-shadow: 0 0 6px rgba(255,46,46,.25);
+}
+.card-actions { display: flex; align-items: center; gap: 10px; }
+.secondary-link {
+  font-size: .9rem;
+  color: #ff4d4d;
+  text-decoration: none;
+  border-bottom: 1px dashed #ff4d4d;
+  padding-bottom: 2px;
+}
+.secondary-link:hover,
+.secondary-link:focus-visible { color: #ffa3a3; border-bottom-color: #ffa3a3; outline: none; }
+.card-button {
+  background: #7a0000; color: #fff; border: 1px solid #b30000;
+  padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: .9rem;
+  transition: background .15s ease, transform .08s ease, border-color .15s ease;
+}
+.card-button:hover { background: #9c0000; border-color: #ff1e1e; }
+.card-button:active { transform: translateY(1px); }
+.card-button:disabled { background: #333; border-color: #444; color: #999; cursor: not-allowed; }
+
+/* --- Badges de stock --- */
+.badge {
+  position: absolute; top: 10px; left: 10px; padding: 4px 8px; font-size: .78rem;
+  border-radius: 6px; font-weight: 800; letter-spacing: .3px; box-shadow: 0 2px 8px rgba(0,0,0,.45);
+  user-select: none;
+}
+.badge-out { background: #505050; color: #ececec; border: 1px solid #7a7a7a; }
+.badge-low { background: #ffcc00; color: #111; border: 1px solid #e6b800; }
+
+/* Hint de stock */
+.stock-hint { color: #b9b9b9; font-size: .78rem; opacity: .9; }
+
+/* Para que el link de la imagen no cambie colores */
+.card-image-wrapper { color: inherit; text-decoration: none; display: block; }
