@@ -1,4 +1,4 @@
-/* --- Card base --- */
+
 .item-card {
   position: relative;
   display: flex;
@@ -16,10 +16,10 @@
   box-shadow: 0 10px 20px rgba(0,0,0,0.7);
 }
 
-/* --- Imagen: mostrar el producto completo dentro del marco --- */
+
 .card-image-wrapper {
   width: 100%;
-  height: clamp(180px, 28vw, 260px); /* alto responsivo, tope 260px */
+  height: clamp(180px, 28vw, 260px); 
   background: #111;
   display: flex;
   align-items: center;
@@ -32,11 +32,11 @@
   max-height: 100%;
   width: auto;
   height: auto;
-  object-fit: contain;   /* evita cortes, se ve la pieza completa */
+  object-fit: contain;   
   object-position: center;
 }
 
-/* --- Contenido --- */
+
 .card-content {
   padding: 14px 16px;
   display: flex;
@@ -56,7 +56,7 @@
   color: #cfcfcf;
 }
 
-/* --- Pie con precio + acciones --- */
+
 .card-bottom {
   margin-top: 4px;
   display: flex;
@@ -89,7 +89,7 @@
 .card-button:active { transform: translateY(1px); }
 .card-button:disabled { background: #333; border-color: #444; color: #999; cursor: not-allowed; }
 
-/* --- Badges de stock --- */
+
 .badge {
   position: absolute; top: 10px; left: 10px; padding: 4px 8px; font-size: .78rem;
   border-radius: 6px; font-weight: 800; letter-spacing: .3px; box-shadow: 0 2px 8px rgba(0,0,0,.45);
@@ -98,8 +98,8 @@
 .badge-out { background: #505050; color: #ececec; border: 1px solid #7a7a7a; }
 .badge-low { background: #ffcc00; color: #111; border: 1px solid #e6b800; }
 
-/* Hint de stock */
+
 .stock-hint { color: #b9b9b9; font-size: .78rem; opacity: .9; }
 
-/* Para que el link de la imagen no cambie colores */
+
 .card-image-wrapper { color: inherit; text-decoration: none; display: block; }

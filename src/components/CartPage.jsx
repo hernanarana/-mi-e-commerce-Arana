@@ -1,76 +1,82 @@
 // src/components/CartPage.jsx
 import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
-import { createOrderAndDecrement } from '../services/api';
-import { confirm, alertOK, alertError } from '../utils/alerts';
+import { createOrderAndDecrement as createOrder } from '../services/api';
+import CheckoutForm from './CheckoutForm';
 import './CartPage.css';
 
-const CartPage = () => {
+export default function CartPage() {
   const { cartItems, clearCart } = useCart();
   const [confirmation, setConfirmation] = useState(null);
   const [submitting, setSubmitting] = useState(false);
 
-  // Total = precio * cantidad
   const total = cartItems.reduce(
-    (sum, item) => sum + (Number(item.price) || 0) * (Number(item.quantity) || 1),
+    (sum, it) => sum + (Number(it.price) || 0) * (Number(it.quantity) || 1),
     0
   );
 
-  const handleClear = async () => {
-    const res = await confirm('¿Vaciar carrito?', 'Esta acción no se puede deshacer');
-    if (res.isConfirmed) clearCart();
-  };
+  // 🔴 DEBUG opcional: te muestra por qué no aparece
+  console.log('DEBUG -> items:', cartItems.length, 'confirmation:', confirmation);
 
-  const handleCheckout = async () => {
+  // Recibe los datos validados del formulario
+  const handleCheckout = async (buyer) => {
     if (!cartItems.length) return;
     try {
       setSubmitting(true);
       const now = new Date();
-
-      const orderData = {
+      const order = {
+        buyer, // { name, email, phone, address }
         items: cartItems.map(it => ({
-          docId: it.docId,               // ideal para descontar stock directo
-          id: it.id,                     // fallback por campo numérico
+          docId: it.docId,
+          id: it.id,
           name: it.name,
           price: Number(it.price) || 0,
           quantity: Number(it.quantity) || 1,
+          imageUrl: it.imageUrl,
         })),
         total,
         date: now.toISOString(),
       };
 
-      const orderId = await createOrderAndDecrement(orderData);
-
+      const orderId = await createOrder(order);
       setConfirmation({
         id: orderId,
         date: now.toLocaleDateString(),
         time: now.toLocaleTimeString(),
         total,
       });
-
       clearCart();
-      alertOK('¡Compra realizada!', `ID de orden: ${orderId}`);
     } catch (e) {
       console.error('Checkout ERROR:', e);
-      alertError('Error al procesar la compra', e?.message ?? 'Inténtalo más tarde');
+      alert('Error al procesar la compra: ' + (e?.message ?? 'Inténtalo más tarde'));
     } finally {
       setSubmitting(false);
     }
   };
 
-  return (
-    <section className="cart-page">
-      <h2>Tu Carrito</h2>
-
-      {confirmation ? (
+  if (confirmation) {
+    return (
+      <section className="cart-page">
+        <h2>Tu Carrito</h2>
         <div className="checkout-confirmation">
           <h3>¡Compra realizada!</h3>
           <p>ID de orden: {confirmation.id}</p>
           <p>Fecha: {confirmation.date}</p>
           <p>Hora: {confirmation.time}</p>
           <p>Total: ${confirmation.total.toFixed(2)}</p>
+          <button className="clear-button" onClick={() => setConfirmation(null)}>
+            Volver al formulario
+          </button>
         </div>
-      ) : cartItems.length === 0 ? (
+      </section>
+    );
+  }
+
+  return (
+    <section className="cart-page">
+      <h2>Tu Carrito</h2>
+
+      {cartItems.length === 0 ? (
         <p>No tienes productos en el carrito.</p>
       ) : (
         <>
@@ -91,17 +97,15 @@ const CartPage = () => {
 
           <div className="cart-summary">
             <p>Total: <strong>${total.toFixed(2)}</strong></p>
-            <button className="clear-button" onClick={handleClear} disabled={submitting}>
+            <button className="clear-button" onClick={clearCart} disabled={submitting}>
               Vaciar carrito
             </button>
-            <button className="checkout-button" onClick={handleCheckout} disabled={submitting}>
-              {submitting ? 'Procesando…' : 'Proceder al pago'}
-            </button>
           </div>
+
+          {/* 👇 AQUÍ se muestra el formulario */}
+          <CheckoutForm onSubmit={handleCheckout} submitting={submitting} />
         </>
       )}
     </section>
   );
-};
-
-export default CartPage;
+}

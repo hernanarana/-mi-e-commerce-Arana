@@ -1,0 +1,24 @@
+.checkout-form {
+  margin-top: 1rem;
+  background: #151515;
+  border: 1px solid #2a0000;
+  border-radius: 8px;
+  padding: 1rem;
+}
+.checkout-form h3 { margin: 0 0 .75rem; color: #ff2e2e; }
+.field { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.field label { font-size: .92rem; color: #ddd; }
+.field input {
+  background: #0e0e0e; color: #fff; border: 1px solid #333;
+  border-radius: 6px; padding: .55rem .65rem; outline: none;
+}
+.field input[aria-invalid="true"] { border-color: #ff4d4d; box-shadow: 0 0 0 2px rgba(255,77,77,.15); }
+.error { color: #ff8585; font-size: .8rem; }
+
+.submit {
+  width: 100%;
+  background: #7a0000; border: 1px solid #b30000; color: #fff;
+  font-weight: 700; padding: .65rem .9rem; border-radius: 8px; cursor: pointer;
+}
+.submit:hover { background: #9c0000; }
+.submit:disabled { background: #333; border-color: #444; color: #999; cursor: not-allowed; }

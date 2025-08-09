@@ -1,29 +1,139 @@
+/* ===========================
+   Global reset + tokens
+=========================== */
+*,
+*::before,
+*::after { box-sizing: border-box; }
 
 html, body, #root {
-  margin: 0;
   height: 100%;
-  width: 100%;
-}
-
-
-body {
-  background: #000;
-  color: #fff;
-  font-family: sans-serif;
-}
-
-
-.app-container {
-  width: 100%;      
-  max-width: none;  
   margin: 0;
+}
+
+:root{
+  --bg: #000000;
+  --bg-2: #0b0b0b;
+  --surface: #111111;
+  --border: #2a0000;
+  --text: #f2f2f2;
+  --muted: #bdbdbd;
+  --accent: #e60000;      /* rojo terror */
+  --accent-2: #7a0000;
+}
+
+/* ===========================
+   Base
+=========================== */
+body{
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial, sans-serif;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, svg, video, canvas {
+  display: block;
+  max-width: 100%;
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+button{
+  font: inherit;
+}
+
+/* ===========================
+   Layout app (footer abajo)
+=========================== */
+.app-container{
+  min-height: 100vh;        /* ocupar alto de pantalla */
+  display: flex;
+  flex-direction: column;   /* header / main / footer */
+}
+
+.main{
+  flex: 1;                  /* empuja el footer al fondo */
+  width: 100%;
+  max-width: none;          /* sin límite de ancho */
   padding: 1rem;
 }
 
-
-.item-list-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
-  width: 100%;      
+/* Opcional: centrar contenido en pantallas MUY grandes */
+/*
+.main > * {
+  margin-inline: auto;
+  max-width: 1280px;
 }
+*/
+
+/* ===========================
+   Títulos / texto
+=========================== */
+h1, h2, h3{
+  margin: 0 0 .75rem 0;
+}
+h1{ font-size: clamp(1.6rem, 2.2vw, 2.2rem); }
+h2{ font-size: clamp(1.3rem, 1.8vw, 1.6rem); color: var(--accent); }
+p{ margin: 0 0 .75rem 0; color: #e9e9e9; }
+
+/* ===========================
+   Grilla de productos
+=========================== */
+.item-list{
+  display: grid;
+  gap: 1rem;
+}
+
+.item-list-title{
+  color: var(--accent);
+  text-align: center;
+  text-shadow: 0 0 8px rgba(230,0,0,.25);
+}
+
+.item-list-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+/* ===========================
+   NavBar contenedor carrito
+=========================== */
+.navbar-cart{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+/* ===========================
+   Utilidades
+=========================== */
+.container{
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+.muted{ color: var(--muted); }
+
+/* ===========================
+   Accesibilidad / focus
+=========================== */
+:focus-visible{
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ===========================
+   Scrollbar (opcional)
+=========================== */
+::-webkit-scrollbar{ width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb{ background: #222; border: 2px solid #111; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover{ background: #2d0000; }
