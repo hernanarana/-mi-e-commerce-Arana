@@ -1,4 +1,3 @@
-// src/components/CartPage.jsx
 import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { createOrderAndDecrement as createOrder } from '../services/api';
@@ -15,17 +14,17 @@ export default function CartPage() {
     0
   );
 
-  // 🔴 DEBUG opcional: te muestra por qué no aparece
+  
   console.log('DEBUG -> items:', cartItems.length, 'confirmation:', confirmation);
 
-  // Recibe los datos validados del formulario
+  
   const handleCheckout = async (buyer) => {
     if (!cartItems.length) return;
     try {
       setSubmitting(true);
       const now = new Date();
       const order = {
-        buyer, // { name, email, phone, address }
+        buyer, 
         items: cartItems.map(it => ({
           docId: it.docId,
           id: it.id,
@@ -102,7 +101,7 @@ export default function CartPage() {
             </button>
           </div>
 
-          {/* 👇 AQUÍ se muestra el formulario */}
+        
           <CheckoutForm onSubmit={handleCheckout} submitting={submitting} />
         </>
       )}

@@ -36,7 +36,7 @@ export default function CheckoutForm({ onSubmit, submitting }) {
     return e;
   };
 
-  // ✅ Validación en vivo: marca como "tocado" y recalcula errores al tipear
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     const next = { ...values, [name]: value };
