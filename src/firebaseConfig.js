@@ -1,20 +1,15 @@
+// src/firebaseConfig.js
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
-
 const firebaseConfig = {
-  apiKey: "AIzaSyDqnkLetbaxhhFrFKm4BL--O5CKNr7oqq4",
-  authDomain: "ecomerce-arana.firebaseapp.com",
-  projectId: "ecomerce-arana",
-  storageBucket: "ecomerce-arana.firebasestorage.app", 
-  messagingSenderId: "872293023319",
-  appId: "1:872293023319:web:92ad5682de8759fc65ad12",
-  measurementId: "G-XXJB0F1SMD"
+  apiKey: "TU_API_KEY",
+  authDomain: "TU_AUTH_DOMAIN",
+  projectId: "TU_PROJECT_ID",
+  storageBucket: "TU_STORAGE_BUCKET",
+  messagingSenderId: "TU_MESSAGING_SENDER_ID",
+  appId: "TU_APP_ID",
 };
 
 const app = initializeApp(firebaseConfig);
-
-
 export const db = getFirestore(app);
-
-
