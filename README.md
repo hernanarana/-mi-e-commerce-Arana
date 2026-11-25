@@ -1,12 +1,54 @@
-# React + Vite
+# Mi E-commerce (React + Firebase)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Tienda online hecha en React con catálogo de productos, detalle, carrito y checkout. Los productos y las órdenes de compra se guardan en Firebase Firestore, y al confirmar una compra se actualiza el stock.
 
-Currently, two official plugins are available:
+> Demo: _[link pendiente de publicación]_
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Qué hace
 
-## Expanding the ESLint configuration
+- **Catálogo** con listado de productos y navegación por rutas.
+- **Detalle de producto** con selector de cantidad.
+- **Carrito** global con Context API: agregar, quitar y ver el total, con un ícono en la barra de navegación.
+- **Checkout** con formulario y validaciones.
+- **Órdenes** guardadas en Firestore, con actualización del stock en la misma operación.
+- **Alertas** amigables con SweetAlert2 y página 404.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tecnologías
+
+| Área | Herramientas |
+| --- | --- |
+| Frontend | React, Vite, React Router, PropTypes |
+| Estado | Context API |
+| Base de datos | Firebase Firestore |
+| Interfaz | SweetAlert2 |
+
+## Cómo correrlo
+
+1. Instalá las dependencias:
+
+   ```bash
+   npm install
+   ```
+
+2. Copiá `.env.example` como `.env` y completá los datos de tu proyecto de Firebase (Configuración del proyecto → Tus apps → Configuración del SDK).
+3. Iniciá el proyecto:
+
+   ```bash
+   npm run dev
+   ```
+
+Para publicarlo (Vercel o Netlify), cargá las mismas variables `VITE_FIREBASE_*` en la configuración del sitio.
+
+## Estructura
+
+```
+src/
+├── components/   # NavBar, ItemList, ItemDetail, CartPage, CheckoutForm…
+├── context/      # CartContext
+├── services/     # acceso a Firestore (productos y órdenes)
+└── utils/        # alertas
+```
+
+---
+
+Desarrollado por **Hernán Arana** · [LuSan PRO](#) — SAP HANA · Data Science · Web · Marketing digital
